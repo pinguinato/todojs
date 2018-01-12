@@ -1,0 +1,29 @@
+html{
+  margin:0;
+  padding:0;
+  text-align: center;
+  font-size: 62.5%;
+}
+body{
+  font-family: "Segoe UI",Helvetica,sans;
+  /*background: linear-gradient(deepskyblue,white);*/
+  background-color:pink;
+}
+
+ul{
+  list-style-type: none;
+  width:100%;
+}
+
+#container{
+  witdh:100%;
+  max-width: 300px;
+  margin:auto;
+}
+li{
+  padding:5px;
+  background-color: #FFF;
+  color:#000;
+  border-bottom:1px solid deepskyblue;
+  border-radius:5px;
+}
