@@ -2,12 +2,23 @@
 // closure
 var TodoList = function(){
 
+
+  var doc = document;
   // un array per gestire i todos
   var todos = [
     'Fare la spesa',
     'Chiamare Stefania',
     'Bestemmiare'
   ];
+
+  // funzione che ci serve per aggiungere un LI
+    var createLI = function(text){
+        //console.log(text);
+        var li = doc.createElement('li');
+        li.appendChild(doc.createTextNode(text));
+        //console.log(li);
+        return li;
+    };
 
   return {
     // ritorna i todos
@@ -17,7 +28,9 @@ var TodoList = function(){
     // aggiunge un todo
     addTodo : function(todo){
       todos.push(todo);
-    }
+    },
+    // create LI
+    createLI : createLI
   }
 };
 
@@ -38,6 +51,18 @@ document.addEventListener('DOMContentLoaded',function(){
   // seleziono l'input text
   var todoInput = doc.querySelector('#todo');
   // catturo l'evento tastiera
+
+  //listener sulla lista
+  todoList.addEventListener('click',function(e){
+      // controllo se ho cliccato un elemento li
+      if (e.target.nodeName.toLowerCase() === 'li' && e.offsetX >= 7 && e.offsetX <= 20 ){
+            console.log(e); // controlla proprietà offsetX
+          e.target.className = 'line-through';
+        }
+  });
+
+
+  // listener sulla casella di input
   todoInput.addEventListener('keypress',function(e){
     //console.dir(e); // mi restituisce in console il keycode
     // controllo che sia stato inserito invio e che il valore non sia vuoto
@@ -47,12 +72,19 @@ document.addEventListener('DOMContentLoaded',function(){
     // aggiungi il todo
     if(e.keyCode === 13 && e.target.value && e.target.value.length >= 3){
       myApp.addTodo(e.target.value);
+      // mi salvo il valore del todo
+      var todo = e.target.value;
       // pulisco la casella di input
       e.target.value = '';
-      var li = doc.createElement('li');
-      li.appendChild(doc.createTextNode(todo));
+
+      // var li = doc.createElement('li');
+      // li.appendChild(doc.createTextNode(todo));
+
+      var li = myApp.createLI(todo);
+
+
       todoList.insertBefore(li,todoList.firstElementChild.nextElementSibling);
-      console.dir(myApp.getTodos());
+      //console.dir(myApp.getTodos());
     }
 
     //console.log(e.keycode);
@@ -75,15 +107,16 @@ document.addEventListener('DOMContentLoaded',function(){
   //  return '<li>'+todo+'</li>';
   //});
 
-   var li, todoText;
+   //var li, todoText;
   
    todos.forEach(function(todo){
-     console.log(todo+'\n');
-     li = doc.createElement('li');
-     todoText = doc.createTextNode(todo);
-  //   //console.log(todoText);
-     li.appendChild(todoText);
-     todoList.appendChild(li);
+  //    console.log(todo+'\n');
+  //    li = doc.createElement('li');
+  //    todoText = doc.createTextNode(todo);
+  // //   //console.log(todoText);
+  //    li.appendChild(todoText);
+  //    todoList.appendChild(li);
+     todoList.appendChild(myApp.createLI(todo));
    });
   
 
