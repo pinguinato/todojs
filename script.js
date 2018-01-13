@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded',function(){
       myApp.addTodo(e.target.value);
       // pulisco la casella di input
       e.target.value = '';
+      var li = doc.createElement('li');
+      li.appendChild(doc.createTextNode(todo));
+      todoList.insertBefore(li,todoList.firstElementChild.nextElementSibling);
       console.dir(myApp.getTodos());
     }
 
