@@ -55,3 +55,15 @@ ul#todolist li:first-child:before{
 ul#todolist li.checked{
   text-decoration: line-through;
 }
+
+ul#todolist li.checked:before{
+  border: 2px solid red;
+  border-left-width: 0;
+  border-top-width: 0;
+  transform: rotate(45deg);
+  width: 6px;
+  height: 16px;
+  left:5px;
+  position:relative;
+  bottom:5px;
+}
