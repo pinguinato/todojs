@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',function(){
   //listener sulla lista
   todoList.addEventListener('click',function(e){
       // controllo se ho cliccato un elemento li
-      if (e.target.nodeName.toLowerCase() === 'li' && e.offsetX >= 7 && e.offsetX <= 20 ){
+      if (e.target.id != 'addElementLi' && e.target.nodeName.toLowerCase() === 'li' && e.offsetX >= 7 && e.offsetX <= 20 ){
             console.log(e); // controlla proprietà offsetX
           e.target.className = 'checked';
         }

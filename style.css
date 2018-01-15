@@ -54,6 +54,7 @@ ul#todolist li:first-child:before{
 
 ul#todolist li.checked{
   text-decoration: line-through;
+  display:none;
 }
 
 ul#todolist li.checked:before{
