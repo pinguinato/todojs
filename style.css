@@ -68,3 +68,11 @@ ul#todolist li.checked:before{
   position:relative;
   bottom:5px;
 }
+
+#addElementLi{
+
+}
+
+li.hidden{
+  display:none;
+}

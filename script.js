@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded',function(){
   //alert(typeof myApp.getTodos()[0]); // ritorna tipo stringa
   //alert(myApp.getTodos()[0]); // ritorna il valore dell'elemento
 
+    var showCompleted = false;
+
   // stampa in console i todos
   //console.log(myApp.getTodos());
 
@@ -51,13 +53,32 @@ document.addEventListener('DOMContentLoaded',function(){
   // seleziono l'input text
   var todoInput = doc.querySelector('#todo');
   // catturo l'evento tastiera
+  var showCompleteBtn = doc.querySelector('#showCompleteBtn');
+
+
+
+  showCompleteBtn.addEventListener('click',function(){
+     showCompleted = true;
+      // mi prendo tutti quelli della lista che hanno la classe checked
+     var checkedElements = todoList.getElementsByClassName('checked'); // questo mi ritorna un array
+     console.dir(checkedElements);
+     // ciclo sull'array
+      for(var i=0;i<checkedElements.length;i++){
+          checkedElements[i].style.display = 'block'; // gli tolgo il display:none
+      }
+  });
+
 
   //listener sulla lista
   todoList.addEventListener('click',function(e){
       // controllo se ho cliccato un elemento li
       if (e.target.id != 'addElementLi' && e.target.nodeName.toLowerCase() === 'li' && e.offsetX >= 7 && e.offsetX <= 20 ){
             console.log(e); // controlla proprietà offsetX
-          e.target.className = 'checked';
+          //e.target.className = 'checked';
+          e.target.classList.add('checked');
+          if(!showCompleted){
+              e.target.classList.add('hidden');
+          }
         }
   });
 
